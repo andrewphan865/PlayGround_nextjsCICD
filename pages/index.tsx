@@ -1,27 +1,34 @@
+// pages/index.js
+import { NextApiRequest, NextPage, NextPageContext } from 'next';
+import React from 'react';
+interface RuntimeConfig {
+  APP_URL: string;
 
-import styles from '@/styles/Home.module.css'
-
-
-export default function Home() {
-  return (
-    <>
-
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            APP_NAME : {process.env.APP_NAME}
-          </p>
-          <p>
-            SF_URL : {process.env.SF_URL}
-          </p>
-          <p>
-            AB_URL : {process.env.AB_URL}
-          </p>
-          <p>
-            NEXT_PUBLIC_SF_URL : {process.env.NEXT_PUBLIC_SF_URL}
-          </p>
-        </div>
-      </main>
-    </>
-  )
 }
+
+interface RequestWithRuntimeConfig extends NextApiRequest {
+  runtimeConfig: RuntimeConfig;
+}
+
+const HomePage: NextPage<{ runtimeConfig: RuntimeConfig }> = ({ runtimeConfig }) => {
+  const { APP_URL } = runtimeConfig;
+
+  return (
+    <div>
+      <h1>Hello, World!</h1>
+      <p>App URL: {APP_URL}</p>
+    </div>
+  );
+};
+
+HomePage.getInitialProps = async (context: NextPageContext) => {
+  // Access the runtimeConfig from the request object
+  const req = context.req as RequestWithRuntimeConfig;
+  const runtimeConfig = req.runtimeConfig;
+
+  return {
+    runtimeConfig,
+  };
+};
+
+export default HomePage;
