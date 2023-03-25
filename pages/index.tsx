@@ -23,7 +23,9 @@ export default function Home() {
           <p>
             AB_URL : {AB_URL}
           </p>
-
+          <p>
+            NEXT_PUBLIC_SF_URL : {process.env.NEXT_PUBLIC_SF_URL}
+          </p>
         </div>
       </main>
     </>
