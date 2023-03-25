@@ -21,7 +21,7 @@ app.prepare().then(() => {
 
     // Handle the request with Next.js
     const parsedUrl = parse(req.url, true);
-    handle(req, res, parsedUrl);
+     handle(req, res, parsedUrl, { runtimeConfig });
   });
 
   const port = process.env.PORT || 3000;
