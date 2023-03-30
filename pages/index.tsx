@@ -1,13 +1,6 @@
 
 import styles from '@/styles/Home.module.css'
 
-
-import getConfig from 'next/config';
-const { publicRuntimeConfig } = getConfig();
-
-const { APP_NAME, SF_URL, AB_URL } = publicRuntimeConfig;
-
-
 export default function Home() {
   return (
     <>
@@ -15,13 +8,19 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.description}>
           <p>
-            APP_NAME : {APP_NAME}
+            GLOBAL_APP_NAME : {global.process.env.APP_NAME}
           </p>
           <p>
-            SF_URL : {SF_URL}
+            APP_NAME : {process.env.APP_NAME}
           </p>
           <p>
-            AB_URL : {AB_URL}
+            GLOBAL_SF_URL : {global.process.env.F_URL}
+          </p>
+          <p>
+            SF_URL : {process.env.F_URL}
+          </p>
+          <p>
+            GLOBAL_NEXT_PUBLIC_SF_URL : {global.process.env.NEXT_PUBLIC_SF_URL}
           </p>
           <p>
             NEXT_PUBLIC_SF_URL : {process.env.NEXT_PUBLIC_SF_URL}
